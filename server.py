@@ -12,6 +12,7 @@ DISCONNECT = "!DISCONNECT"
 # print(socket.gethostname())
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print(socket.SOCK_STREAM)
 server.bind(ADDR)
 
 def handleClient(conn, addr):
@@ -45,3 +46,5 @@ def start():
 
 print("Server starting...")
 start()
+
+
