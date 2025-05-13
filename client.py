@@ -18,6 +18,6 @@ def send(msg):
     client.send(message)
     print(client.recv(2048))
 
-send("Hi")
-input()
-send("!DISCONNECT")
+
+message = input("Enter a message to send: ")
+send(message)
