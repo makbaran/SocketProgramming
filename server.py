@@ -24,10 +24,13 @@ def handleClient(conn, addr):
         if msg_length:
             msg_length = int(msg_length)
             msg = conn.recv(msg_length).decode(FORMAT)
+            print(f"[{addr}] {msg}")
+            logChat(addr, msg)
+            
             if (msg == DISCONNECT):
                 connected = False
                 print("Server disconnecting...")
-            print(f"[{addr}] {msg}")
+            
             conn.send("Msg received".encode(FORMAT))
     
     conn.close()
@@ -44,6 +47,10 @@ def start():
         print(f"Active connections: {threading.active_count() -1}\n")
         
 
+def logChat(addr, msg):
+    with open("log.txt", "a") as log:
+        log.write(f"{addr}, {msg}\n")
+        
 print("Server starting...")
 start()
 
