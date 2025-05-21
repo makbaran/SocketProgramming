@@ -8,16 +8,12 @@ HEADER = 64
 FORMAT = "utf-8"
 DISCONNECT = "!DC"
 
-# print(SERVER)
-# print(socket.gethostname())
-
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print(socket.SOCK_STREAM )
 server.bind(ADDR)
 
 def handleClient(conn, addr):
     print(f"New connection: {addr} connected\n")
-    
     connected = True
     while connected:
         msg_length = conn.recv(HEADER).decode(FORMAT)
@@ -25,15 +21,13 @@ def handleClient(conn, addr):
             msg_length = int(msg_length)
             msg = conn.recv(msg_length).decode(FORMAT)
             print(f"[{addr}] {msg}")
+            if msg != DISCONNECT:
+                log(addr, msg)
             if (msg == DISCONNECT):
                 connected = False
                 print("Server disconnecting...")
-            
             conn.send("Msg received".encode(FORMAT))
-    
     conn.close()
-
-    
 
 def start():
     server.listen()
@@ -44,7 +38,10 @@ def start():
         thread.start()
         print(f"Active connections: {threading.active_count() -1}\n")
         
-
+def log(addr, msg):
+    with open("log.log", "a") as log:
+        log.write(f"[{addr}], {msg}\n")
+        
 print("Server starting...")
 start()
 
