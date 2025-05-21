@@ -1,4 +1,11 @@
+# IDE directories
 /.idea
 /.vscode
-.txt
-.log
+
+# Log files
+*.log
+logs/
+log/
+*.txt
+
+
