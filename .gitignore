@@ -8,4 +8,5 @@ logs/
 log/
 *.txt
 
-
+# Python files
+/__pycache__

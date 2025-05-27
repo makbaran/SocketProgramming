@@ -1,8 +1,10 @@
 import socket
 import threading
+import getLocal
+
 
 PORT = 5050
-SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = getLocal.getLocalIP()
 ADDR = (SERVER, PORT)
 HEADER = 64
 FORMAT = "utf-8"

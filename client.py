@@ -1,10 +1,12 @@
 import socket
+import getLocal
 
 HEADER = 64
 PORT = 5050
 FORMAT = "utf-8"
 DISCONNECT = "!DC"
-SERVER = socket.gethostbyname(socket.gethostname())
+SERVER = getLocal.getLocalIP()
+
 ADDR = (SERVER, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
